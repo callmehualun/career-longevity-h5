@@ -275,16 +275,16 @@
         </div>
 
         <div class="purchase-price">
-          <span class="price-old">¥29.9</span>
-          <span class="price-current">¥9.9</span>
-          <span class="price-label">限时特惠</span>
+          <span class="price-old" style="text-decoration: line-through; opacity: 0.5;">¥29.9</span>
+          <span class="price-current">¥0</span>
+          <span class="price-label">限时免费</span>
         </div>
 
         <button class="btn btn-primary btn-block" onclick="purchaseReport()">
           立即解锁完整报告
         </button>
 
-        <div class="purchase-note">支付后立即查看 · 不支持退款</div>
+        <div class="purchase-note">立即查看完整报告 · 限时免费开放</div>
       </div>
     </div>
 
@@ -446,8 +446,8 @@
 
     // 购买报告
     function purchaseReport() {
-      // 跳转到支付页面(这里先跳转到报告页模拟已支付)
-      if (confirm('确认支付9.9元查看完整报告?')) {
+      // 直接跳转到报告页(限时免费)
+      if (confirm('确认解锁完整报告?(限时免费)')) {
         localStorage.setItem('hasPurchasedReport', 'true');
         window.location.href = 'report.html';
       }
