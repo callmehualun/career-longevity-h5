@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>职场续命力测评 - 宣传海报</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .poster-container {
+      width: 375px;
+      background: linear-gradient(180deg, #FF6B4A 0%, #FF8266 50%, #FFF5F3 100%);
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(255, 107, 74, 0.3);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* 装饰圆圈 */
+    .decoration-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .circle-1 {
+      width: 200px;
+      height: 200px;
+      top: -100px;
+      right: -50px;
+    }
+
+    .circle-2 {
+      width: 150px;
+      height: 150px;
+      bottom: 100px;
+      left: -75px;
+    }
+
+    .poster-content {
+      position: relative;
+      z-index: 1;
+      padding: 48px 32px;
+    }
+
+    /* 顶部标签 */
+    .top-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 8px 20px;
+      border-radius: 100px;
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 主标题 */
+    .main-title {
+      font-size: 42px;
+      font-weight: 900;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      letter-spacing: -1px;
+    }
+
+    .main-title .highlight {
+      color: #FFF9E6;
+      position: relative;
+      display: inline-block;
+    }
+
+    .main-title .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: rgba(255, 249, 230, 0.3);
+      border-radius: 4px;
+    }
+
+    /* 副标题 */
+    .subtitle {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    /* 特点卡片 */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 20px 16px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .feature-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 4px;
+    }
+
+    .feature-desc {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* 数据展示 */
+    .stats-section {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .stats-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 24px;
+      font-weight: 800;
+      color: #FF6B4A;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #6B7280;
+    }
+
+    /* 限时免费标签 */
+    .free-badge {
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      color: #8B4513;
+      padding: 16px 24px;
+      border-radius: 16px;
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(255, 215, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .free-badge::before {
+      content: '✨';
+      position: absolute;
+      font-size: 60px;
+      opacity: 0.2;
+      top: -10px;
+      right: -10px;
+      animation: rotate 10s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .free-badge-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .free-badge-subtitle {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    /* 二维码区域 */
+    .qr-section {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .qr-placeholder {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 16px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #6B7280;
+      border: 2px dashed #D1D5DB;
+      position: relative;
+    }
+
+    .qr-code {
+      width: 200px;
+      height: 200px;
+      border-radius: 16px;
+      margin: 0 auto 16px;
+      display: none;
+    }
+
+    .qr-code.active {
+      display: block;
+    }
+
+    .qr-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 8px;
+    }
+
+    .qr-subtitle {
+      font-size: 13px;
+      color: #6B7280;
+    }
+
+    /* 底部信息 */
+    .footer-info {
+      margin-top: 24px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 12px;
+    }
+
+    /* 生成二维码按钮 */
+    .generate-qr-btn {
+      margin: 20px auto;
+      display: block;
+      background: #FF6B4A;
+      color: white;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 107, 74, 0.3);
+      transition: transform 0.2s;
+    }
+
+    .generate-qr-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .generate-qr-btn:active {
+      transform: translateY(0);
+    }
+
+    /* 说明文字 */
+    .instructions {
+      max-width: 375px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .instructions h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    .instructions ol {
+      margin-left: 20px;
+      color: #6B7280;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .instructions li {
+      margin-bottom: 8px;
+    }
+
+    .url-input-section {
+      margin: 20px auto;
+      max-width: 375px;
+    }
+
+    .url-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #E5E7EB;
+      border-radius: 12px;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .url-input:focus {
+      outline: none;
+      border-color: #FF6B4A;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="poster-container">
+      <div class="decoration-circle circle-1"></div>
+      <div class="decoration-circle circle-2"></div>
+
+      <div class="poster-content">
+        <!-- 顶部标签 -->
+        <div class="top-badge">🔥 职业发展必测</div>
+
+        <!-- 主标题 -->
+        <h1 class="main-title">
+          你的职场<br>
+          还能<span class="highlight">撑多久</span>?
+        </h1>
+
+        <!-- 副标题 -->
+        <p class="subtitle">
+          24道专业题目,5分钟测出你的职场生存力<br>
+          找到破局路径,延长职业生命
+        </p>
+
+        <!-- 特点网格 -->
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <div class="feature-title">6大维度</div>
+            <div class="feature-desc">全面诊断</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <div class="feature-title">专业分析</div>
+            <div class="feature-desc">精准评估</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <div class="feature-title">3条路径</div>
+            <div class="feature-desc">破局方案</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📅</div>
+            <div class="feature-title">30天计划</div>
+            <div class="feature-desc">行动指南</div>
+          </div>
+        </div>
+
+        <!-- 数据展示 -->
+        <div class="stats-section">
+          <div class="stats-title">已有 10000+ 人完成测评</div>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-number">95%</div>
+              <div class="stat-label">获得启发</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">5分钟</div>
+              <div class="stat-label">完成测评</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">免费开放</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 限时免费 -->
+        <div class="free-badge">
+          <div class="free-badge-title">🎁 限时免费开放</div>
+          <div class="free-badge-subtitle">原价 ¥29.9 完整报告,现在 0 元解锁</div>
+        </div>
+
+        <!-- 二维码 -->
+        <div class="qr-section">
+          <div class="qr-placeholder" id="qrPlaceholder">
+            扫码立即测评
+          </div>
+          <canvas id="qrCode" class="qr-code" width="200" height="200"></canvas>
+          <div class="qr-title">长按识别二维码</div>
+          <div class="qr-subtitle">立即开始职场续命力测评</div>
+        </div>
+
+        <!-- 底部信息 -->
+        <div class="footer-info">
+          职场续命力测评 · 助力职业发展
+        </div>
+      </div>
+    </div>
+
+    <!-- URL 输入区 -->
+    <div class="url-input-section">
+      <input
+        type="text"
+        class="url-input"
+        id="urlInput"
+        placeholder="输入测评链接 (例: https://career-longevity-h5-eafx.vercel.app/)"
+        value="https://career-longevity-h5-eafx.vercel.app/"
+      >
+      <button class="generate-qr-btn" onclick="generateQRCode()">
+        🎨 生成二维码海报
+      </button>
+    </div>
+
+    <!-- 使用说明 -->
+    <div class="instructions">
+      <h3>📌 使用说明</h3>
+      <ol>
+        <li>在上方输入框中输入您的测评链接</li>
+        <li>点击"生成二维码海报"按钮</li>
+        <li>长按海报或右键保存图片</li>
+        <li>分享到朋友圈、微信群等私域渠道</li>
+        <li>用户扫码即可开始测评</li>
+      </ol>
+    </div>
+  </div>
+
+  <script>
+    // 简易二维码生成函数
+    function generateQRCode() {
+      const url = document.getElementById('urlInput').value;
+      if (!url) {
+        alert('请输入测评链接');
+        return;
+      }
+
+      const canvas = document.getElementById('qrCode');
+      const ctx = canvas.getContext('2d');
+      const size = 200;
+      const moduleCount = 25; // 二维码模块数量
+      const moduleSize = size / moduleCount;
+
+      // 清空画布
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, size, size);
+
+      // 生成简单的二维码模式(这是一个模拟效果,实际应用建议使用 qrcode.js 库)
+      ctx.fillStyle = '#111827';
+
+      // 生成伪随机模式(基于 URL 的简单哈希)
+      let hash = 0;
+      for (let i = 0; i < url.length; i++) {
+        hash = ((hash << 5) - hash) + url.charCodeAt(i);
+        hash = hash & hash;
+      }
+
+      // 绘制定位标记(左上、右上、左下)
+      function drawFinderPattern(x, y) {
+        // 外框
+        ctx.fillRect(x * moduleSize, y * moduleSize, 7 * moduleSize, 7 * moduleSize);
+        ctx.fillStyle = 'white';
+        ctx.fillRect((x + 1) * moduleSize, (y + 1) * moduleSize, 5 * moduleSize, 5 * moduleSize);
+        ctx.fillStyle = '#111827';
+        ctx.fillRect((x + 2) * moduleSize, (y + 2) * moduleSize, 3 * moduleSize, 3 * moduleSize);
+      }
+
+      drawFinderPattern(0, 0); // 左上
+      drawFinderPattern(moduleCount - 7, 0); // 右上
+      drawFinderPattern(0, moduleCount - 7); // 左下
+
+      // 填充数据区域
+      for (let row = 0; row < moduleCount; row++) {
+        for (let col = 0; col < moduleCount; col++) {
+          // 跳过定位标记区域
+          if ((row < 8 && col < 8) ||
+              (row < 8 && col >= moduleCount - 8) ||
+              (row >= moduleCount - 8 && col < 8)) {
+            continue;
+          }
+
+          // 使用伪随机决定是否填充
+          const seed = (row * moduleCount + col + hash) * 9301 + 49297;
+          if (seed % 3 === 0) {
+            ctx.fillRect(col * moduleSize, row * moduleSize, moduleSize, moduleSize);
+          }
+        }
+      }
+
+      // 显示二维码,隐藏占位符
+      document.getElementById('qrPlaceholder').style.display = 'none';
+      canvas.classList.add('active');
+
+      alert('✅ 二维码已生成!\n\n💡 建议:\n1. 长按海报保存图片\n2. 或者右键 → 保存图片\n3. 分享到朋友圈/微信群\n\n⚠️ 注意:这是演示版二维码\n实际使用请访问 https://cli.im 等工具生成真实二维码');
+    }
+
+    // 页面加载时自动生成
+    window.addEventListener('load', function() {
+      // 可以选择自动生成或等待用户点击
+      // generateQRCode();
+    });
+  </script>
+</body>
+</html>
