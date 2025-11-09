@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>移动端测试页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+
+    .test-item {
+      background: white;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .status {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 10px;
+    }
+
+    .success {
+      background: #10b981;
+      color: white;
+    }
+
+    .error {
+      background: #ef4444;
+      color: white;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #111;
+    }
+
+    .info {
+      font-size: 14px;
+      color: #666;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 移动端诊断测试</h1>
+
+  <div id="results"></div>
+
+  <script>
+    const results = document.getElementById('results');
+
+    function addTest(name, status, info = '') {
+      const div = document.createElement('div');
+      div.className = 'test-item';
+      div.innerHTML = `
+        <div>
+          ${name}
+          <span class="status ${status ? 'success' : 'error'}">
+            ${status ? '✓ 通过' : '✗ 失败'}
+          </span>
+        </div>
+        ${info ? `<div class="info">${info}</div>` : ''}
+      `;
+      results.appendChild(div);
+    }
+
+    // 测试1: 基础 HTML 加载
+    addTest('HTML 页面加载', true, 'HTML 文件已成功加载');
+
+    // 测试2: JavaScript 执行
+    addTest('JavaScript 执行', true, 'JS 代码正常运行');
+
+    // 测试3: LocalStorage
+    try {
+      localStorage.setItem('test', 'value');
+      const val = localStorage.getItem('test');
+      localStorage.removeItem('test');
+      addTest('LocalStorage', val === 'value', 'LocalStorage 可用');
+    } catch(e) {
+      addTest('LocalStorage', false, 'LocalStorage 不可用: ' + e.message);
+    }
+
+    // 测试4: 屏幕信息
+    const screenInfo = `宽度: ${window.innerWidth}px, 高度: ${window.innerHeight}px`;
+    addTest('屏幕尺寸', true, screenInfo);
+
+    // 测试5: User Agent
+    const ua = navigator.userAgent;
+    const isMobile = /iPhone|iPad|Android/i.test(ua);
+    addTest('设备类型', true, isMobile ? '移动设备' : '桌面设备');
+
+    // 测试6: 网络连接
+    addTest('网络状态', navigator.onLine, navigator.onLine ? '在线' : '离线');
+
+    // 测试7: HTTPS
+    const isHTTPS = window.location.protocol === 'https:';
+    addTest('HTTPS', isHTTPS, window.location.protocol);
+
+    // 测试8: CSS 加载
+    setTimeout(() => {
+      const testDiv = document.querySelector('.test-item');
+      const bgColor = window.getComputedStyle(testDiv).backgroundColor;
+      const cssWorking = bgColor === 'rgb(255, 255, 255)' || bgColor === '#ffffff';
+      addTest('CSS 样式', cssWorking, '背景色: ' + bgColor);
+    }, 100);
+
+    // 测试9: 尝试加载 CSS 文件
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'css/common.css';
+    link.onload = () => {
+      addTest('CSS 文件加载', true, 'css/common.css 加载成功');
+    };
+    link.onerror = () => {
+      addTest('CSS 文件加载', false, 'css/common.css 加载失败');
+    };
+    document.head.appendChild(link);
+
+    // 测试10: 尝试加载 JS 文件
+    const script = document.createElement('script');
+    script.src = 'data/questions.js';
+    script.onload = () => {
+      addTest('JS 文件加载', true, 'data/questions.js 加载成功');
+
+      // 测试11: 数据文件内容
+      if (typeof CareerData !== 'undefined') {
+        addTest('测评数据', true, `加载了 ${Object.keys(CareerData.questions || {}).length} 道题目`);
+      } else {
+        addTest('测评数据', false, 'CareerData 未定义');
+      }
+    };
+    script.onerror = () => {
+      addTest('JS 文件加载', false, 'data/questions.js 加载失败');
+    };
+    document.head.appendChild(script);
+
+  </script>
+</body>
+</html>
