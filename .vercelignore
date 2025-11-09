@@ -1,0 +1,15 @@
+# 职场续命力 H5 项目
+
+职场续命力测评 - 24道题测出你的职场生存力
+
+在线体验: https://your-domain.vercel.app
+
+## 本地运行
+
+```bash
+python3 -m http.server 8000
+```
+
+## 部署
+
+使用 Vercel 自动部署

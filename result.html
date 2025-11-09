@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>测评结果 - 职场续命力</title>
+  <link rel="stylesheet" href="css/common.css">
+  <style>
+    body {
+      background: #F9FAFB;
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    .result-page {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .score-card {
+      padding: 40px 24px;
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFF5F3 100%);
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .score-badge {
+      display: inline-block;
+      padding: 8px 20px;
+      border-radius: 100px;
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .score-number {
+      font-size: 72px;
+      font-weight: 800;
+      color: #FF6B4A;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .score-label {
+      font-size: 16px;
+      color: #6B7280;
+      margin-bottom: 12px;
+    }
+
+    .score-desc {
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      max-width: 280px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .score-stats {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-content: center;
+      padding-top: 24px;
+      border-top: 1px solid #E5E7EB;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 12px;
+      color: #9CA3AF;
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      display: block;
+      font-size: 18px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 36px;
+      background: #E5E7EB;
+    }
+
+    .section {
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 16px;
+    }
+
+    .radar-chart {
+      width: 100%;
+      max-width: 300px;
+      height: 300px;
+      margin: 32px auto;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .dimension-result {
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #E5E7EB;
+      margin-bottom: 12px;
+    }
+
+    .dimension-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .dimension-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .dimension-score {
+      font-size: 20px;
+      font-weight: 700;
+      color: #FF6B4A;
+    }
+
+    .purchase-card {
+      padding: 32px 24px;
+      background: linear-gradient(135deg, #FFF5F3 0%, #FFFFFF 100%);
+      border: 2px solid #FF6B4A;
+      border-radius: 16px;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .purchase-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 8px;
+    }
+
+    .purchase-subtitle {
+      font-size: 14px;
+      color: #6B7280;
+      margin-bottom: 20px;
+    }
+
+    .purchase-benefits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .benefit-tag {
+      padding: 6px 12px;
+      background: white;
+      border: 1px solid #E5E7EB;
+      border-radius: 100px;
+      font-size: 12px;
+      color: #374151;
+    }
+
+    .purchase-price {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .price-old {
+      font-size: 16px;
+      color: #9CA3AF;
+      text-decoration: line-through;
+    }
+
+    .price-current {
+      font-size: 40px;
+      font-weight: 800;
+      color: #FF6B4A;
+    }
+
+    .price-label {
+      padding: 4px 10px;
+      background: #FF6B4A;
+      border-radius: 6px;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .purchase-note {
+      font-size: 12px;
+      color: #9CA3AF;
+      margin-top: 12px;
+    }
+
+    .actions-section {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="result-page">
+    <div class="score-card">
+      <div class="score-badge" id="scoreBadge" style="background: #3B82F6;">职场转型期</div>
+      <div class="score-number" id="scoreNumber">68</div>
+      <div class="score-label">职场续命力指数</div>
+      <div class="score-desc" id="scoreDesc">你正在职场转型的关键期,有基础但需进化</div>
+
+      <div class="score-stats">
+        <div class="stat-item">
+          <span class="stat-label">生存率</span>
+          <span class="stat-value" id="survivalRate">70%</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-label">超越人群</span>
+          <span class="stat-value" id="percentile">65%</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-label">同水平</span>
+          <span class="stat-value" id="population">30%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">六维度能力分析</div>
+      <div class="radar-chart">
+        <canvas id="radarCanvas" width="260" height="260"></canvas>
+      </div>
+
+      <div id="dimensionsList">
+        <!-- 维度列表将通过 JS 生成 -->
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="purchase-card">
+        <div class="purchase-title">解锁完整报告</div>
+        <div class="purchase-subtitle">获得5000字深度分析 + 30天行动计划</div>
+
+        <div class="purchase-benefits">
+          <div class="benefit-tag">✓ 详细诊断分析</div>
+          <div class="benefit-tag">✓ 3条职业路径</div>
+          <div class="benefit-tag">✓ 30天行动计划</div>
+          <div class="benefit-tag">✓ 资源推荐</div>
+        </div>
+
+        <div class="purchase-price">
+          <span class="price-old">¥29.9</span>
+          <span class="price-current">¥9.9</span>
+          <span class="price-label">限时特惠</span>
+        </div>
+
+        <button class="btn btn-primary btn-block" onclick="purchaseReport()">
+          立即解锁完整报告
+        </button>
+
+        <div class="purchase-note">支付后立即查看 · 不支持退款</div>
+      </div>
+    </div>
+
+    <div class="actions-section">
+      <button class="btn btn-secondary" onclick="retakeAssessment()">
+        重新测评
+      </button>
+      <button class="btn btn-secondary" onclick="shareResult()">
+        分享结果
+      </button>
+    </div>
+  </div>
+
+  <script src="data/questions.js"></script>
+  <script>
+    // 加载结果
+    const resultData = JSON.parse(localStorage.getItem('assessment_result') || '{}');
+
+    if (!resultData.totalScore) {
+      // 没有结果,跳转到首页
+      alert('请先完成测评');
+      window.location.href = 'index.html';
+    } else {
+      // 显示结果
+      displayResult(resultData);
+    }
+
+    function displayResult(result) {
+      // 显示总分和状态
+      document.getElementById('scoreNumber').textContent = result.totalScore;
+      document.getElementById('scoreBadge').textContent = result.statusLevel.label;
+      document.getElementById('scoreBadge').style.background = result.statusLevel.color;
+      document.getElementById('scoreDesc').textContent = result.statusLevel.description;
+      document.getElementById('survivalRate').textContent = result.statusLevel.survivalRate;
+      document.getElementById('percentile').textContent = result.percentile + '%';
+      document.getElementById('population').textContent = result.statusLevel.population;
+
+      // 生成雷达图
+      drawRadarChart(result.dimensionScores);
+
+      // 生成维度列表
+      const dimensionsList = document.getElementById('dimensionsList');
+      Object.entries(CareerData.dimensions).forEach(([key, dim]) => {
+        const score = result.dimensionScores[dim.id] || 0;
+        const percentage = Math.round((score / dim.maxScore) * 100);
+
+        const dimCard = document.createElement('div');
+        dimCard.className = 'dimension-result';
+        dimCard.innerHTML = `
+          <div class="dimension-header">
+            <span class="dimension-name">${dim.name}</span>
+            <span class="dimension-score">${score}/${dim.maxScore}</span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" style="width: ${percentage}%;"></div>
+          </div>
+        `;
+        dimensionsList.appendChild(dimCard);
+      });
+    }
+
+    // 绘制雷达图
+    function drawRadarChart(scores) {
+      const canvas = document.getElementById('radarCanvas');
+      const ctx = canvas.getContext('2d');
+      const centerX = 130;
+      const centerY = 130;
+      const radius = 100;
+
+      // 准备数据
+      const dimensions = Object.values(CareerData.dimensions).map(dim => ({
+        name: dim.name,
+        score: scores[dim.id] || 0,
+        maxScore: dim.maxScore
+      }));
+
+      const angleStep = (Math.PI * 2) / dimensions.length;
+
+      // 清空画布
+      ctx.clearRect(0, 0, 260, 260);
+
+      // 绘制背景网格
+      ctx.strokeStyle = '#E5E7EB';
+      ctx.lineWidth = 1;
+
+      for (let level = 1; level <= 5; level++) {
+        const levelRadius = (radius / 5) * level;
+        ctx.beginPath();
+        for (let i = 0; i <= dimensions.length; i++) {
+          const angle = angleStep * i - Math.PI / 2;
+          const x = centerX + levelRadius * Math.cos(angle);
+          const y = centerY + levelRadius * Math.sin(angle);
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        ctx.stroke();
+      }
+
+      // 绘制轴线
+      for (let i = 0; i < dimensions.length; i++) {
+        const angle = angleStep * i - Math.PI / 2;
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(
+          centerX + radius * Math.cos(angle),
+          centerY + radius * Math.sin(angle)
+        );
+        ctx.stroke();
+      }
+
+      // 绘制数据区域
+      ctx.beginPath();
+      dimensions.forEach((dim, i) => {
+        const angle = angleStep * i - Math.PI / 2;
+        const ratio = dim.score / dim.maxScore;
+        const pointRadius = radius * ratio;
+        const x = centerX + pointRadius * Math.cos(angle);
+        const y = centerY + pointRadius * Math.sin(angle);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(255, 107, 74, 0.15)';
+      ctx.fill();
+      ctx.strokeStyle = '#FF6B4A';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // 绘制数据点
+      dimensions.forEach((dim, i) => {
+        const angle = angleStep * i - Math.PI / 2;
+        const ratio = dim.score / dim.maxScore;
+        const pointRadius = radius * ratio;
+        const x = centerX + pointRadius * Math.cos(angle);
+        const y = centerY + pointRadius * Math.sin(angle);
+
+        ctx.beginPath();
+        ctx.arc(x, y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = '#FF6B4A';
+        ctx.fill();
+        ctx.strokeStyle = '#FFFFFF';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      });
+
+      // 绘制标签
+      ctx.fillStyle = '#374151';
+      ctx.font = '11px -apple-system';
+      ctx.textAlign = 'center';
+      dimensions.forEach((dim, i) => {
+        const angle = angleStep * i - Math.PI / 2;
+        const labelRadius = radius + 25;
+        const x = centerX + labelRadius * Math.cos(angle);
+        const y = centerY + labelRadius * Math.sin(angle);
+        ctx.fillText(dim.name.substring(0, 5), x, y);
+      });
+    }
+
+    // 购买报告
+    function purchaseReport() {
+      // 跳转到支付页面(这里先跳转到报告页模拟已支付)
+      if (confirm('确认支付9.9元查看完整报告?')) {
+        localStorage.setItem('hasPurchasedReport', 'true');
+        window.location.href = 'report.html';
+      }
+    }
+
+    // 重新测评
+    function retakeAssessment() {
+      if (confirm('重新测评将覆盖当前结果,确认继续?')) {
+        localStorage.removeItem('assessment_answers');
+        localStorage.removeItem('current_question');
+        localStorage.removeItem('assessment_result');
+        window.location.href = 'assessment.html';
+      }
+    }
+
+    // 分享结果
+    function shareResult() {
+      const shareText = `我的职场续命力测评结果: ${resultData.totalScore}分 - ${resultData.statusLevel.label}! 快来测测你的职场还能撑多久?`;
+
+      if (navigator.share) {
+        navigator.share({
+          title: '职场续命力测评',
+          text: shareText,
+          url: window.location.origin
+        }).catch(err => console.log('分享失败', err));
+      } else {
+        // 复制到剪贴板
+        navigator.clipboard.writeText(shareText + ' ' + window.location.origin)
+          .then(() => alert('已复制分享文案到剪贴板'))
+          .catch(() => alert('请手动分享:\n' + shareText));
+      }
+    }
+  </script>
+</body>
+</html>

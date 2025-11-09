@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>完整报告 - 职场续命力</title>
+  <link rel="stylesheet" href="css/common.css">
+  <style>
+    body {
+      background: #F9FAFB;
+      min-height: 100vh;
+    }
+
+    .report-page {
+      max-width: 600px;
+      margin: 0 auto;
+      padding-bottom: 80px;
+    }
+
+    .report-header {
+      background: linear-gradient(135deg, #FF6B4A 0%, #FF8266 100%);
+      padding: 48px 24px 32px;
+      color: white;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .header-title {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .header-score {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .score-number {
+      font-size: 64px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .score-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .score-label {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .report-content {
+      padding: 24px;
+    }
+
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 16px;
+    }
+
+    .diagnosis-card {
+      padding: 24px;
+      background: white;
+      border-radius: 12px;
+      border-left: 4px solid #FF6B4A;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      margin-bottom: 16px;
+    }
+
+    .diagnosis-text {
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .highlight {
+      color: #FF6B4A;
+      font-weight: 700;
+    }
+
+    .dimension-detail {
+      padding: 24px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      margin-bottom: 24px;
+    }
+
+    .dimension-detail-name {
+      font-size: 22px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 16px;
+    }
+
+    .analysis-text {
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .back-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 56px;
+      height: 56px;
+      background: #FF6B4A;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(255, 107, 74, 0.4);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="report-page">
+    <div class="report-header">
+      <div class="header-top">
+        <div class="header-title">职场续命力完整报告</div>
+      </div>
+
+      <div class="header-score">
+        <div class="score-number" id="scoreNumber">68</div>
+        <div class="score-info">
+          <div class="score-label" id="scoreLabel">职场转型期</div>
+          <div style="font-size: 13px; opacity: 0.8;">测评时间: <span id="testDate">2024-11-09</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-content">
+      <div class="section">
+        <div class="section-title">整体评估</div>
+        <div class="diagnosis-card">
+          <div class="diagnosis-text" id="overallDesc">
+            你的职场续命力得分为 <span class="highlight">68分</span>，
+            处于 <span class="highlight">职场转型期</span> 阶段。
+            你正在职场转型的关键期，有基础但需进化。
+          </div>
+          <div class="diagnosis-text" id="percentileDesc">
+            你的得分超越了全平台 <span class="highlight">65%</span> 的用户。
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">六维度详细分析</div>
+        <div id="dimensionDetails">
+          <!-- 维度详情将通过 JS 生成 -->
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">推荐职业路径</div>
+        <div id="pathsContent">
+          <!-- 路径内容将通过 JS 生成 -->
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="diagnosis-card">
+          <div class="section-title" style="margin: 0 0 16px 0;">需要更多帮助?</div>
+          <div class="diagnosis-text">
+            <strong>1v1职业咨询</strong> (¥299)<br>
+            资深导师1小时深度咨询
+          </div>
+          <div class="diagnosis-text">
+            <strong>简历优化服务</strong> (¥199)<br>
+            专业优化+面试指导
+          </div>
+          <div style="font-size: 13px; color: #9CA3AF; margin-top: 12px;">
+            以上服务请添加客服微信咨询: career-helper
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="back-btn" onclick="window.location.href='result.html'">←</button>
+  </div>
+
+  <script src="data/questions.js"></script>
+  <script>
+    // 检查是否已购买
+    const hasPurchased = localStorage.getItem('hasPurchasedReport');
+    if (!hasPurchased) {
+      alert('请先购买完整报告');
+      window.location.href = 'result.html';
+    }
+
+    // 加载结果
+    const resultData = JSON.parse(localStorage.getItem('assessment_result') || '{}');
+
+    if (resultData.totalScore) {
+      // 显示基本信息
+      document.getElementById('scoreNumber').textContent = resultData.totalScore;
+      document.getElementById('scoreLabel').textContent = resultData.statusLevel.label;
+      document.getElementById('testDate').textContent = resultData.testDate || '2024-11-09';
+
+      // 生成维度详情
+      const dimensionDetails = document.getElementById('dimensionDetails');
+      Object.entries(CareerData.dimensions).forEach(([key, dim]) => {
+        const score = resultData.dimensionScores[dim.id] || 0;
+        const percentage = Math.round((score / dim.maxScore) * 100);
+
+        const detailCard = document.createElement('div');
+        detailCard.className = 'dimension-detail';
+
+        let analysis = '';
+        switch(dim.id) {
+          case 'skill_evolution':
+            analysis = `你在技能迭代方面的得分为${score}分。这反映了你对新技能的学习态度和应用能力。在AI时代，技能半衰期缩短至2-3年，建议每年至少掌握3-5项新技能。重点关注：AI工具应用、数据分析、跨界技能组合。`;
+            break;
+          case 'career_adaptability':
+            analysis = `职业适应力${score}分表明你${percentage >= 60 ? '具备一定的' : '需要加强'}应对变化的能力。建议培养"反脆弱"思维，将变化视为机会而非威胁。每季度尝试1个新的工作方式或业务领域。`;
+            break;
+          case 'resource_integration':
+            analysis = `资源整合力直接影响你的职场上限。${score}分说明你${percentage >= 60 ? '已建立' : '需要建立'}基础人脉网络。建议每月主动连接3-5个不同领域的人，建立"弱连接"网络。`;
+            break;
+          case 'psychological_resilience':
+            analysis = `心理韧性是职场长跑的关键。${score}分反映了你的压力管理水平。建议建立固定的压力释放机制：运动、冥想、倾诉等。同时培养"成长型思维"，将挫折视为学习机会。`;
+            break;
+          case 'business_acumen':
+            analysis = `商业敏锐度决定了你能看到多远。${score}分表明你${percentage >= 60 ? '对商业有一定理解' : '需要加强商业思维'}。建议定期阅读财报、关注行业动态、理解公司盈利模式。从"打工人思维"升级到"经营者思维"。`;
+            break;
+          case 'action_execution':
+            analysis = `行动执行力是将想法变现的关键。${score}分说明你的执行效率${percentage >= 60 ? '良好' : '有待提升'}。建议采用GTD或番茄工作法管理时间。遵循"2分钟法则"：能2分钟做完的事立刻做。`;
+            break;
+        }
+
+        detailCard.innerHTML = `
+          <div class="dimension-detail-name">${dim.name}</div>
+          <div style="font-size: 48px; font-weight: 800; color: #FF6B4A; margin-bottom: 12px;">
+            ${score}<span style="font-size: 24px; color: #9CA3AF;">/${dim.maxScore}</span>
+          </div>
+          <div class="analysis-text">${analysis}</div>
+        `;
+        dimensionDetails.appendChild(detailCard);
+      });
+
+      // 生成路径推荐
+      const pathsContent = document.getElementById('pathsContent');
+      resultData.recommendedPaths.forEach((path, idx) => {
+        const pathCard = document.createElement('div');
+        pathCard.className = 'diagnosis-card';
+
+        let pathDesc = '';
+        switch(path.path) {
+          case 'SKILL_DEEPENING':
+            pathDesc = '技能深化路径适合那些对技术/专业有热情，希望成为领域专家的人。这条路径强调纵向深挖，通过持续精进某一核心技能，建立不可替代的专业壁垒。';
+            break;
+          case 'MANAGEMENT_TRANSFORMATION':
+            pathDesc = '管理转型路径适合具备一定资源整合能力，希望带团队做大事的人。这条路径强调从个人贡献者向管理者转型，通过他人达成目标。';
+            break;
+          case 'INDEPENDENT_BRAND':
+            pathDesc = '独立品牌路径适合商业嗅觉敏锐、执行力强的人。这条路径强调打造个人IP，通过知识变现或创业获得自由和财富。';
+            break;
+        }
+
+        pathCard.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="padding: 4px 12px; background: #FF6B4A; border-radius: 8px; color: white; font-size: 13px; font-weight: 700;">
+              路径 ${idx + 1}
+            </div>
+            <div style="font-size: 18px; font-weight: 700; color: #111827;">${path.name}</div>
+            <div style="margin-left: auto; font-size: 20px; font-weight: 700; color: #10B981;">
+              ${path.suitability}%
+            </div>
+          </div>
+          <div class="diagnosis-text">${pathDesc}</div>
+        `;
+        pathsContent.appendChild(pathCard);
+      });
+    }
+  </script>
+</body>
+</html>

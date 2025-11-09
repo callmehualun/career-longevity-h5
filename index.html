@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="职场续命力测评 - 24道题测出你的职场生存力,找到破局路径">
+  <meta name="keywords" content="职场测评,职业发展,职场续命力,职业规划">
+  <title>职场续命力测评 - 你的职场还能撑多久?</title>
+  <link rel="stylesheet" href="css/common.css">
+  <style>
+    /* 首页特定样式 */
+    body {
+      background: linear-gradient(180deg, #FFF5F3 0%, #FFFFFF 100%);
+      min-height: 100vh;
+    }
+
+    .hero-section {
+      padding: 60px 24px 40px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: linear-gradient(135deg, #FF6B4A 0%, #FF8266 100%);
+      border-radius: 100px;
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: 40px;
+      font-weight: 800;
+      color: #111827;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: #6B7280;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .social-proof {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      padding: 24px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      margin-top: 32px;
+    }
+
+    .proof-item {
+      text-align: center;
+    }
+
+    .proof-number {
+      display: block;
+      font-size: 20px;
+      font-weight: 700;
+      color: #FF6B4A;
+      margin-bottom: 4px;
+    }
+
+    .proof-label {
+      font-size: 12px;
+      color: #9CA3AF;
+    }
+
+    .proof-divider {
+      width: 1px;
+      height: 32px;
+      background: #E5E7EB;
+    }
+
+    .section {
+      padding: 48px 24px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #111827;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: #6B7280;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .dimensions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .dimension-card {
+      padding: 24px 16px;
+      background: white;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .dimension-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .dimension-name {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 6px;
+    }
+
+    .dimension-desc {
+      font-size: 12px;
+      color: #9CA3AF;
+      line-height: 1.4;
+    }
+
+    .benefits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+
+    .benefit-icon {
+      flex-shrink: 0;
+      font-size: 32px;
+    }
+
+    .benefit-content {
+      flex: 1;
+    }
+
+    .benefit-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+
+    .benefit-desc {
+      font-size: 14px;
+      color: #6B7280;
+      line-height: 1.5;
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, #FFE8E3 0%, #FFF5F3 100%);
+      border-radius: 20px;
+      margin: 0 24px 40px;
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .cta-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 24px;
+    }
+
+    .cta-note {
+      font-size: 12px;
+      color: #9CA3AF;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero-section">
+    <div class="hero-badge">职场生存力测评</div>
+    <h1 class="hero-title">你的职场<br>还能撑多久?</h1>
+    <p class="hero-subtitle">24道题测出你的职场续命力<br>找到属于你的破局路径</p>
+
+    <button class="btn btn-primary btn-block" onclick="startAssessment()">
+      开始免费测评
+    </button>
+
+    <div class="social-proof">
+      <div class="proof-item">
+        <span class="proof-number">10,000+</span>
+        <span class="proof-label">已测评</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-item">
+        <span class="proof-number">68分</span>
+        <span class="proof-label">平均分</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-item">
+        <span class="proof-number">技能深化</span>
+        <span class="proof-label">热门路径</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">六维度全面评估</h2>
+    <p class="section-subtitle">基于职业适应力理论,科学评估你的职场生存力</p>
+
+    <div class="dimensions-grid">
+      <div class="dimension-card">
+        <div class="dimension-icon">🔄</div>
+        <span class="dimension-name">技能迭代力</span>
+        <span class="dimension-desc">学习新技能的速度和质量</span>
+      </div>
+      <div class="dimension-card">
+        <div class="dimension-icon">🎯</div>
+        <span class="dimension-name">职业适应力</span>
+        <span class="dimension-desc">面对变化的调整能力</span>
+      </div>
+      <div class="dimension-card">
+        <div class="dimension-icon">🤝</div>
+        <span class="dimension-name">资源整合力</span>
+        <span class="dimension-desc">调动资源达成目标</span>
+      </div>
+      <div class="dimension-card">
+        <div class="dimension-icon">💪</div>
+        <span class="dimension-name">心理韧性</span>
+        <span class="dimension-desc">承受压力的恢复能力</span>
+      </div>
+      <div class="dimension-card">
+        <div class="dimension-icon">💡</div>
+        <span class="dimension-name">商业敏锐度</span>
+        <span class="dimension-desc">识别机会的能力</span>
+      </div>
+      <div class="dimension-card">
+        <div class="dimension-icon">⚡</div>
+        <span class="dimension-name">行动执行力</span>
+        <span class="dimension-desc">将想法转化为结果</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">你将获得</h2>
+
+    <div class="benefits-list">
+      <div class="benefit-item">
+        <div class="benefit-icon">📊</div>
+        <div class="benefit-content">
+          <div class="benefit-title">六维度雷达图</div>
+          <div class="benefit-desc">清晰看到你的强项和短板</div>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">🎯</div>
+        <div class="benefit-content">
+          <div class="benefit-title">3条职业路径</div>
+          <div class="benefit-desc">适配你的职业发展方向</div>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">📋</div>
+        <div class="benefit-content">
+          <div class="benefit-title">30天行动计划</div>
+          <div class="benefit-desc">具体可执行的提升方案</div>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">💰</div>
+        <div class="benefit-content">
+          <div class="benefit-title">完整报告仅需9.9元</div>
+          <div class="benefit-desc">一杯奶茶的价格,改变职场命运</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <div class="cta-title">开始测评,找到你的破局方向</div>
+    <button class="btn btn-primary btn-block" onclick="startAssessment()">
+      免费开始测评
+    </button>
+    <div class="cta-note">仅需5分钟 · 24道专业题目 · 免费获得基础结果</div>
+  </div>
+
+  <script>
+    function startAssessment() {
+      // 清除之前的答案
+      localStorage.removeItem('assessment_answers');
+      localStorage.removeItem('current_question');
+
+      // 跳转到测评页
+      window.location.href = 'assessment.html';
+    }
+
+    // 检查是否已经测评过
+    const hasResult = localStorage.getItem('assessment_result');
+    if (hasResult) {
+      // 如果已测评,显示"查看结果"按钮
+      const buttons = document.querySelectorAll('.btn-primary');
+      buttons.forEach(btn => {
+        btn.innerHTML = '查看我的结果';
+        btn.onclick = function() {
+          window.location.href = 'result.html';
+        };
+      });
+    }
+  </script>
+</body>
+</html>
